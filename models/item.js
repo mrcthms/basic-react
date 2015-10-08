@@ -18,7 +18,7 @@ var itemSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  assignee: {
+  whoIsBuying: {
     type: String
   },
   whoFor: {

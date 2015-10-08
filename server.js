@@ -28,6 +28,56 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * GET /api/items
+ * Gets the current items in the database.
+ */
+app.get('/api/items', function (req, res, next) {
+  Item.find({}, function (err, items) {
+
+    if (err) {
+      return next(err);
+    }
+
+    if (!items) {
+      return res.status(404).send({ message: 'No items found.' });
+    }
+
+    res.send(items);
+  });
+});
+
+/**
+ * POST /api/items
+ * Adds new items to the database
+ */
+app.post('/api/items', function (req, res, next) {
+  var name = req.body.name;
+  var url = req.body.url;
+  var price = req.body.price;
+  var isBought = req.body.isBought;
+  var whoIsBuying = req.body.whoIsBuying;
+  var whoFor = req.body.whoFor;
+
+  var item = new Item({
+    name: name,
+    url: url,
+    price: price,
+    isBought: isBought,
+    whoIsBuying: whoIsBuying,
+    whoFor: whoFor
+  });
+
+  item.save(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.send({
+      message: name + ' added successfully'
+    });
+  });
+});
+
 app.use(function (req, res) {
   Router.run(routes, req.path, function (Handler) {
     var html = React.renderToString(React.createElement(Handler));

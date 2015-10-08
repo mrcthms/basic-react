@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import ItemList from './item-list.jsx';
 import AddItem from './add-item.jsx';
+import { ITEMS_URL } from '../config';
 
 class Home extends React.Component {
   constructor(props) {
@@ -25,6 +26,19 @@ class Home extends React.Component {
 
   loadItemsFromServer() {
     console.log('hello world');
+    $.ajax({
+      url: ITEMS_URL,
+      type: 'GET',
+      cache: false,
+      success: (items) => {
+        this.setState({
+          items: items
+        })
+      },
+      error: (xhr, status, err) => {
+        console.log(xhr, status, err);
+      }
+    })
   }
 
   handleFormSubmit(item) {
@@ -32,6 +46,23 @@ class Home extends React.Component {
     var newItems = items.concat(item);
     this.setState({
       items: newItems
+    });
+    this.addItem(item);
+  }
+
+  addItem(item) {
+    $.ajax({
+      url: ITEMS_URL,
+      type: 'POST',
+      data: item,
+      success: (items) => {
+        this.setState({
+          items: items
+        })
+      },
+      error: (xhr, status, err) => {
+        console.log(xhr, status, err);
+      }
     });
   }
 

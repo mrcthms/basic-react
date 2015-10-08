@@ -14,11 +14,12 @@ class AddItem extends React.Component {
     var price = React.findDOMNode(this.refs.price).value.trim();
     var whoFor = React.findDOMNode(this.refs.whoFor).value.trim();
     var whoIsBuying = React.findDOMNode(this.refs.whoIsBuying).value.trim();
-    var isBought = React.findDOMNode(this.refs.isBought).value.trim();
+    var isBought = React.findDOMNode(this.refs.isBought).checked;
 
     if (!name || !url || !price || !whoFor || !whoIsBuying || typeof isBought === 'undefined') {
       canSubmit = false;
     }
+    console.log(isBought);
     if (canSubmit) {
       this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought });
 
