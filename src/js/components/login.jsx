@@ -4,7 +4,7 @@ import Router from 'react-router';
 import { Link } from 'react-router';
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       error: false
@@ -56,7 +56,7 @@ class Login extends React.Component {
 }
 
 Login.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: React.PropTypes.func
 };
 
 export default Login;
