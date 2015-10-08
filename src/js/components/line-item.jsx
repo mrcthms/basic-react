@@ -38,9 +38,9 @@ class LineItem extends React.Component {
           <span className='line-item__label'>Price</span>
           <span className='line-item__value'>{this.props.price}</span>
         </span>
-        <span className='line-item__property line-item__property--assignee' ref='assignee'>
+        <span className='line-item__property line-item__property--who-is-buying' ref='whoIsBuying'>
           <span className='line-item__label'>Who is buying?</span>
-          <span className='line-item__value'>{this.props.assignee}</span>
+          <span className='line-item__value'>{this.props.whoIsBuying}</span>
         </span>
         <span className='line-item__property line-item__property--who-for' ref='whoFor'>
           <span className='line-item__label'>Who is the recipient?</span>
@@ -48,7 +48,7 @@ class LineItem extends React.Component {
         </span>
         <span className='line-item__property line-item__property--status' ref='isBought'>
           <span className='line-item__label'>Is it bought?</span>
-          <span className='line-item__value'>{this.props.isBought === true ? 'Yes' : 'No'}</span>
+          <span className='line-item__value'>{this.props.isBought === 'on' ? 'Yes' : 'No'}</span>
         </span>
         <Link className='line-item__id' to={'/items/' + this.props._id}>{this.props._id}</Link>
       </div>

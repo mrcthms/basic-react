@@ -19,14 +19,15 @@ class AddItem extends React.Component {
     if (!name || !url || !price || !whoFor || !whoIsBuying || typeof isBought === 'undefined') {
       canSubmit = false;
     }
+    if (canSubmit) {
+      this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought });
 
-    this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought });
+      var fields = ['name', 'url', 'price', 'whoFor', 'whoIsBuying', 'isBought'];
 
-    var fields = ['name', 'url', 'price', 'whoFor', 'whoIsBuying', 'isBought'];
-
-    fields.forEach((field) => {
-      React.findDOMNode(this.refs[field]).value = '';
-    });
+      fields.forEach((field) => {
+        React.findDOMNode(this.refs[field]).value = '';
+      });
+    }
   }
 
   render() {
