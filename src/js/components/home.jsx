@@ -2,9 +2,11 @@ import React from 'react';
 import $ from 'jquery';
 import ItemList from './item-list.jsx';
 import AddItem from './add-item.jsx';
+import { requireAuth } from '../app/functions.jsx';
+import auth from './auth.jsx';
 import { ITEMS_URL } from '../config';
 
-class Home extends React.Component {
+var Home = requireAuth(class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +27,6 @@ class Home extends React.Component {
   }
 
   loadItemsFromServer() {
-    console.log('hello world');
     $.ajax({
       url: ITEMS_URL,
       type: 'GET',
@@ -67,14 +68,16 @@ class Home extends React.Component {
   }
 
   render() {
+    var token = auth.getToken();
     return (
       <div className="xmas-list">
         <ItemList items={this.state.items}>
         </ItemList>
         <AddItem onFormSubmit={this.handleFormSubmit.bind(this)} />
+        <div>{token}</div>
       </div>
     );
   }
-};
+});
 
 export default Home;
