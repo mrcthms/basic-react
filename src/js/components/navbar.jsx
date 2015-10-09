@@ -13,12 +13,13 @@ class Navbar extends React.Component {
     if (this.props.loggedIn) {
       loggedInOrOut = (<li><Link to='/logout'>Logout</Link></li>);
     }
+    var showSignup = !this.props.loggedIn ? <li><Link to='/signup'>Sign Up</Link></li> : '';
     return (
       <nav className='navbar navbar-default navbar-static-top'>
         <ul className='nav navbar-nav'>
           <li><Link to='/'>Home</Link></li>
           {loggedInOrOut}
-          <li><Link to='/'>{this.props.status}</Link></li>
+          {showSignup}
         </ul>
       </nav>
     );

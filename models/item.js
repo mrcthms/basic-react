@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var itemSchema = new mongoose.Schema({
   _creator: [{
-    type: Number,
+    type: String,
     ref: 'User'
   }],
   name: {

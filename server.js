@@ -41,7 +41,10 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Gets the current items in the database.
  */
 app.get('/api/items', function (req, res, next) {
-  Item.find({}, function (err, items) {
+  console.log(req.session);
+  Item.find({
+    _creator: req.session.user._id
+  }, function (err, items) {
 
     if (err) {
       return next(err);
@@ -117,7 +120,6 @@ app.get('/create-admin-user', function (req, res, next) {
  * Authenticate a user
  */
 app.post('/api/login', function (req, res) {
-  console.log(req.body.username, req.body.password);
   pass.authenticate(req.body.username, req.body.password, function (err, user) {
     if (user) {
       req.session.regenerate(function () {
@@ -128,6 +130,38 @@ app.post('/api/login', function (req, res) {
       });
     } else {
       res.send(401);
+    }
+  });
+});
+
+/**
+ * POST /api/signup
+ * Sign a user up
+ */
+app.post('/api/signup', function (req, res) {
+  User.findOne({
+    username: req.body.username
+  }, function (err, user) {
+    if (user) {
+      res.send(401);
+    } else {
+      var newUser = new User();
+      newUser.username = req.body.username;
+      pass.hash(req.body.password, function (err, salt, hash) {
+        if (err) {
+          console.log(err);
+        }
+        newUser.salt = salt;
+        newUser.hash = hash;
+        newUser.save(function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('user saved');
+            res.status(200).end();
+          }
+        });
+      });
     }
   });
 });

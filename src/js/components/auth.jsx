@@ -27,6 +27,22 @@ module.exports = {
       }
     });
   },
+  signUp(username, password, cb) {
+    cb = arguments[arguments.length - 1];
+    signUpuser(username, password, (res) => {
+      if (res.signedUp) {
+        if (cb) {
+          cb(true);
+        }
+        this.onChange(true);
+      } else {
+        if (cb) {
+          cb(false);
+        }
+        this.onChange(false);
+      }
+    });
+  },
   getToken() {
     return localStorage.basic_react_auth_token;
   },
@@ -60,6 +76,24 @@ function authenticateUser(username, password, cb) {
     error: (xhr, status, err) => {
       cb({
         authenticated: true
+      });
+    }
+  });
+}
+
+function signupUser(username, password, cb) {
+  $.ajax({
+    url: SIGNUP_URL,
+    type: 'POST',
+    data: { username, password },
+    success: (data) => {
+      cb({
+        signedUp: true
+      });
+    },
+    error: (hxr, status, err) =>  {
+      cb({
+        signedUp: false
       });
     }
   });
