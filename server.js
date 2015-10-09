@@ -14,6 +14,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var Item = require('./models/item');
 var User = require('./models/user');
+var pass = require('./pass');
 var config = require('./config');
 
 mongoose.connect(config.database);
@@ -24,6 +25,12 @@ mongoose.connection.on('error', function () {
 var app = express();
 
 app.set('port', process.env.PORT || 6789);
+// Session
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: 'ssh, it is a secret'
+}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,6 +66,7 @@ app.post('/api/items', function (req, res, next) {
   var isBought = req.body.isBought;
   var whoIsBuying = req.body.whoIsBuying;
   var whoFor = req.body.whoFor;
+  var _creator = req.body._creator;
 
   var item = new Item({
     name: name,
@@ -66,7 +74,8 @@ app.post('/api/items', function (req, res, next) {
     price: price,
     isBought: isBought,
     whoIsBuying: whoIsBuying,
-    whoFor: whoFor
+    whoFor: whoFor,
+    _creator: _creator
   });
 
   item.save(function (err) {
@@ -76,6 +85,50 @@ app.post('/api/items', function (req, res, next) {
     res.send({
       message: name + ' added successfully'
     });
+  });
+});
+
+/**
+ * GET /create-admin-user
+ * Easy way of adding an administrative user to the database
+ */
+app.get('/create-admin-user', function (req, res, next) {
+  var user = new User();
+  user.username = 'marc';
+  pass.hash('password', function (err, salt, hash) {
+    if (err) {
+      console.log(err);
+    }
+    user.salt = salt;
+    user.hash = hash;
+    user.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('user saved');
+        res.status(200).end();
+      }
+    });
+  });
+});
+
+/**
+ * POST /api/login
+ * Authenticate a user
+ */
+app.post('/api/login', function (req, res) {
+  console.log(req.body.username, req.body.password);
+  pass.authenticate(req.body.username, req.body.password, function (err, user) {
+    if (user) {
+      req.session.regenerate(function () {
+        req.session.user = user;
+        res.send({
+          message: user
+        });
+      });
+    } else {
+      res.send(401);
+    }
   });
 });
 

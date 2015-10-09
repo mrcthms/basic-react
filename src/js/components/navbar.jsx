@@ -13,7 +13,6 @@ class Navbar extends React.Component {
     if (this.props.loggedIn) {
       loggedInOrOut = (<li><Link to='/logout'>Logout</Link></li>);
     }
-    console.log(this.props.loggedIn, loggedInOrOut);
     return (
       <nav className='navbar navbar-default navbar-static-top'>
         <ul className='nav navbar-nav'>

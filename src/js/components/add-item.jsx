@@ -1,4 +1,5 @@
 import React from 'react';
+import auth from './auth.jsx';
 
 class AddItem extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class AddItem extends React.Component {
     }
     console.log(isBought);
     if (canSubmit) {
-      this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought });
+      this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought, _creator: auth.getToken() });
 
       var fields = ['name', 'url', 'price', 'whoFor', 'whoIsBuying', 'isBought'];
 

@@ -12,7 +12,6 @@ class App extends React.Component {
   }
 
   setStateOnAuth(loggedIn) {
-    console.log(loggedIn);
     this.setState({
       loggedIn: loggedIn
     });

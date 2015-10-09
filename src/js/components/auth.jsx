@@ -1,7 +1,9 @@
+import $ from 'jquery';
 import localStorage from 'localStorage';
+import { LOGIN_URL } from '../config';
 
 module.exports = {
-  login(email, pass, cb) {
+  login(username, password, cb) {
     cb = arguments[arguments.length - 1];
     if (localStorage.basic_react_auth_token) {
       if (cb) {
@@ -10,7 +12,7 @@ module.exports = {
         return;
       }
     }
-    authenticateUser(email, pass, (res) => {
+    authenticateUser(username, password, (res) => {
       if (res.authenticated) {
         localStorage.basic_react_auth_token = res.token;
         if (cb) {
@@ -44,17 +46,21 @@ module.exports = {
   }
 };
 
-function authenticateUser(email, pass, cb) {
-  setTimeout(() => {
-    if (email === 'joe@example.com' && pass === 'password1') {
+function authenticateUser(username, password, cb) {
+  $.ajax({
+    url: LOGIN_URL,
+    type: 'POST',
+    data: { username, password },
+    success: (data) => {
       cb({
         authenticated: true,
-        token: Math.random().toString(36).substring(7)
+        token: data.message._id
       });
-    } else {
+    },
+    error: (xhr, status, err) => {
       cb({
-        authenticated: false
+        authenticated: true
       });
     }
-  }, 0);
+  });
 }

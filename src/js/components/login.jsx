@@ -9,21 +9,17 @@ class Login extends React.Component {
     this.state = {
       error: false,
       loggedIn: false,
-      email: null
+      username: null
     };
-    // context.router
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    //var { router } = this.context;
-    //console.log(router, this.context);
-    //var nextPath = router.getCurrentQuery().nextPath();
-    var email = React.findDOMNode(this.refs.email).value.trim();
+    var username = React.findDOMNode(this.refs.username).value.trim();
     var pass = React.findDOMNode(this.refs.password).value.trim();
 
-    auth.login(email, pass, (loggedIn) => {
+    auth.login(username, pass, (loggedIn) => {
       if (!loggedIn) {
         return this.setState({
           error: true,
@@ -33,17 +29,10 @@ class Login extends React.Component {
         return this.setState({
           error: false,
           loggedIn: true,
-          email: email
+          username: username
         });
-        console.log('logged in successfully with ' + email + ' and ' + pass);
+        console.log('logged in successfully with ' + email);
       }
-
-      //if (nextPath) {
-        //router.replaceWith(nextPath);
-        //console.log('logged in');
-      //} else {
-        //router.replaceWith('/login');
-      //}
     });
   }
 
@@ -52,7 +41,7 @@ class Login extends React.Component {
     if (this.state.loggedIn) {
       loginMessage = (
         <div>
-          <p>Logged in as {this.state.email}</p>
+          <p>Logged in as {this.state.username}</p>
           <p><Link to='/'>See your items</Link></p>
         </div>
       );
@@ -62,7 +51,7 @@ class Login extends React.Component {
         {loginMessage}
         <div className={'form-group'}>
           <label className='control-label'>Username</label>
-          <input type='text' className='form-control' ref='email' placeholder="Username" autoFocus/>
+          <input type='text' className='form-control' ref='username' placeholder="Username" autoFocus/>
         </div>
         <div className={'form-group'}>
           <label className='control-label'>Password</label>
