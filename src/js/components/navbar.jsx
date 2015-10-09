@@ -6,30 +6,20 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.onChange = this.onChange.bind(this);
-  }
-
-  componentDidMount() {
-    //NavbarStore.listen(this.onChange)
-  }
-
-  componentWillUnmount() {
-    //NavbarStore.unlisten(this.onChange);
-  }
-
-  onChange(state) {
-    this.setState(state);
   }
 
   render() {
-    var loggedInOrOut = this.state.loggedIn ?
-      <li><Link to='/logout'>Logout</Link></li> :
-      <li><Link to='/login'>Login</Link></li>;
+    var loggedInOrOut = (<li><Link to='/login'>Log In</Link></li>);
+    if (this.props.loggedIn) {
+      loggedInOrOut = (<li><Link to='/logout'>Logout</Link></li>);
+    }
+    console.log(this.props.loggedIn, loggedInOrOut);
     return (
       <nav className='navbar navbar-default navbar-static-top'>
         <ul className='nav navbar-nav'>
           <li><Link to='/'>Home</Link></li>
           {loggedInOrOut}
+          <li><Link to='/'>{this.props.status}</Link></li>
         </ul>
       </nav>
     );

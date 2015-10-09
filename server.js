@@ -3,6 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var routes = require('./src/js/app/routes');
 var express = require('express');
+var ExpressLocation = require('react-router-express');
 var path = require('path');
 var async = require('async');
 var request = require('request');

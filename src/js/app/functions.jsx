@@ -4,7 +4,6 @@ import auth from '../components/auth.jsx';
 export function requireAuth (Component) {
   return class Authenticated extends React.Component {
     static willTransitionTo(transition) {
-      console.log(auth.loggedIn());
       if (!auth.loggedIn()) {
         transition.redirect('/login', {}, {'nextPath' : transition.path});
       }

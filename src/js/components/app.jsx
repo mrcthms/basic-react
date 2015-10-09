@@ -12,6 +12,7 @@ class App extends React.Component {
   }
 
   setStateOnAuth(loggedIn) {
+    console.log(loggedIn);
     this.setState({
       loggedIn: loggedIn
     });
@@ -19,10 +20,11 @@ class App extends React.Component {
 
   componentWillMount() {
     auth.onChange = this.setStateOnAuth.bind(this);
-    auth.login();
+    //auth.login();
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="xmas-list">
         <Navbar loggedIn={this.state.loggedIn} />
