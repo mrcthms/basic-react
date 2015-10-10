@@ -7,26 +7,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      name: auth.getUsername()
     };
   }
 
-  setStateOnAuth(loggedIn) {
+  setStateOnAuth(loggedIn, name = "") {
     this.setState({
-      loggedIn: loggedIn
+      loggedIn: loggedIn,
+      name: name
     });
   }
 
   componentWillMount() {
     auth.onChange = this.setStateOnAuth.bind(this);
-    //auth.login();
+    //auth.onSignupChange
   }
 
   render() {
     console.log(this.state);
     return (
       <div className="xmas-list">
-        <Navbar loggedIn={this.state.loggedIn} />
+        <Navbar loggedIn={this.state.loggedIn} name={this.state.name} />
         <RouteHandler />
       </div>
     );

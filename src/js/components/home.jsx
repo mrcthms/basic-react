@@ -10,15 +10,7 @@ var Home = requireAuth(class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{
-        name: 'Xbox',
-        url: 'http://amazon.com',
-        price: '£19.99',
-        whoFor: 'Amy',
-        whoIsBuying: 'Marc',
-        isBought: false,
-        _id: "asdfasdf234234"
-      }]
+      items: []
     };
   }
 
@@ -30,7 +22,9 @@ var Home = requireAuth(class extends React.Component {
     $.ajax({
       url: ITEMS_URL,
       type: 'GET',
-      cache: false,
+      data: {
+        userId: auth.getToken()
+      },
       success: (items) => {
         this.setState({
           items: items
@@ -56,10 +50,13 @@ var Home = requireAuth(class extends React.Component {
       url: ITEMS_URL,
       type: 'POST',
       data: item,
-      success: (items) => {
+      success: (savedItem) => {
+        var currentItems = this.state.items.slice(0, -1);
+        var newItems = currentItems.concat(savedItem);
+
         this.setState({
-          items: items
-        })
+          items: newItems
+        });
       },
       error: (xhr, status, err) => {
         console.log(xhr, status, err);
@@ -74,7 +71,6 @@ var Home = requireAuth(class extends React.Component {
         <ItemList items={this.state.items}>
         </ItemList>
         <AddItem onFormSubmit={this.handleFormSubmit.bind(this)} />
-        <div>{token}</div>
       </div>
     );
   }

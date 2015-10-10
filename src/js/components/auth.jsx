@@ -1,24 +1,25 @@
 import $ from 'jquery';
 import localStorage from 'localStorage';
-import { LOGIN_URL } from '../config';
+import { LOGIN_URL, SIGNUP_URL } from '../config';
 
 module.exports = {
   login(username, password, cb) {
     cb = arguments[arguments.length - 1];
-    if (localStorage.basic_react_auth_token) {
+    if (localStorage.basicReactAuthToken) {
       if (cb) {
         cb(true);
-        this.onChange(true);
+        this.onChange(true, username);
         return;
       }
     }
     authenticateUser(username, password, (res) => {
       if (res.authenticated) {
-        localStorage.basic_react_auth_token = res.token;
+        localStorage.basicReactAuthToken = res.token;
+        localStorage.xmasListUsername = res.username;
         if (cb) {
           cb(true);
         }
-        this.onChange(true);
+        this.onChange(true, username);
       } else {
         if (cb) {
           cb(false);
@@ -27,36 +28,40 @@ module.exports = {
       }
     });
   },
-  signUp(username, password, cb) {
+  signup(username, password, cb) {
     cb = arguments[arguments.length - 1];
-    signUpuser(username, password, (res) => {
+    signupUser(username, password, (res) => {
       if (res.signedUp) {
         if (cb) {
           cb(true);
         }
-        this.onChange(true);
+        this.login(username, password, (loggedIn) => {
+
+        });
       } else {
         if (cb) {
           cb(false);
         }
-        this.onChange(false);
+        //this.onSignupChange(false);
       }
     });
   },
   getToken() {
-    return localStorage.basic_react_auth_token;
+    return localStorage.basicReactAuthToken;
   },
   logout(cb) {
-    delete localStorage.basic_react_auth_token;
+    delete localStorage.basicReactAuthToken;
     if (cb) {
       cb();
     }
     this.onChange(false);
   },
   loggedIn() {
-    return !!localStorage.basic_react_auth_token;
+    return !!localStorage.basicReactAuthToken;
   },
-
+  getUsername() {
+    return localStorage.xmasListUsername || '';
+  },
   onChange() {
 
   }
@@ -70,12 +75,13 @@ function authenticateUser(username, password, cb) {
     success: (data) => {
       cb({
         authenticated: true,
-        token: data.message._id
+        token: data.message._id,
+        username: username
       });
     },
     error: (xhr, status, err) => {
       cb({
-        authenticated: true
+        authenticated: false
       });
     }
   });

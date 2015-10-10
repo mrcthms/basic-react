@@ -27,7 +27,7 @@ var app = express();
 app.set('port', process.env.PORT || 6789);
 // Session
 app.use(session({
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   secret: 'ssh, it is a secret'
 }));
@@ -41,9 +41,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Gets the current items in the database.
  */
 app.get('/api/items', function (req, res, next) {
-  console.log(req.session);
+  var id = req.session.user ? req.session.user._id : req.query.userId;
   Item.find({
-    _creator: req.session.user._id
+    _creator: id
   }, function (err, items) {
 
     if (err) {
@@ -81,13 +81,11 @@ app.post('/api/items', function (req, res, next) {
     _creator: _creator
   });
 
-  item.save(function (err) {
+  item.save(function (err, savedItem) {
     if (err) {
       return next(err);
     }
-    res.send({
-      message: name + ' added successfully'
-    });
+    res.send(savedItem);
   });
 });
 

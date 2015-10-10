@@ -8,7 +8,7 @@ class Signup extends React.Component {
     super(props);
     this.state = {
       error: false,
-      loggedIn: false,
+      signedUp: false,
       username: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,8 +21,8 @@ class Signup extends React.Component {
     var confirmPass = React.findDOMNode(this.refs.passwordConfirm).value.trim();
 
     if(pass === confirmPass) {
-      auth.login(username, pass, (loggedIn) => {
-        if (!loggedIn) {
+      auth.signup(username, pass, (signedUp) => {
+        if (!signedUp) {
           return this.setState({
             error: true,
             loggedIn: false
@@ -33,7 +33,7 @@ class Signup extends React.Component {
             loggedIn: true,
             username: username
           });
-          console.log('logged in successfully with ' + email);
+          console.log('signed up successfully with ' + email);
         }
       });
     } else {
