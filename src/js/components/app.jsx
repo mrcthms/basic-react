@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="xmas-list">
         <Navbar loggedIn={this.state.loggedIn} name={this.state.name} />

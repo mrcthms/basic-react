@@ -64,11 +64,31 @@ var Home = requireAuth(class extends React.Component {
     });
   }
 
+  handleOnBoughtStatusChange(id, isBought, index) {
+    $.ajax({
+      url: `${ITEMS_URL}/${id}`,
+      type: 'PUT',
+      data: {
+        isBought
+      },
+      success: (updatedItem) => {
+        var items = this.state.items;
+        items[index] = updatedItem;
+        this.setState({
+          items: items
+        });
+      },
+      error: (xhr, status, err) => {
+        console.log(xhr, status, err);
+      }
+    });
+  }
+
   render() {
     var token = auth.getToken();
     return (
       <div className="xmas-list">
-        <ItemList items={this.state.items}>
+        <ItemList items={this.state.items} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)}>
         </ItemList>
         <AddItem onFormSubmit={this.handleFormSubmit.bind(this)} />
       </div>

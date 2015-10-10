@@ -90,6 +90,53 @@ app.post('/api/items', function (req, res, next) {
 });
 
 /**
+ * PUT /api/items/:id
+ * Update the isBought status
+ */
+app.put('/api/items/:id', function (req, res, next) {
+  var id = req.params.id;
+  var isBought = req.body.isBought;
+  Item.findOne({
+    _id: id
+  }, function (err, item) {
+    if (err) {
+      return next(err);
+    }
+    item.isBought = isBought;
+    item.save(function (err, savedItem) {
+      if (err) {
+        return next(err);
+      }
+      res.send(savedItem);
+    });
+  });
+});
+
+/**
+ * DELETE /api/items/:id/destroy
+ * Delete an item
+ */
+app.delete('/api/items/:id/destroy', function (req, res, next) {
+  var id = req.params.id;
+  Item.findOne({
+    _id: id
+  }, function (err, item) {
+    if (err) {
+      return next(err);
+    }
+    if (!item) {
+      return res.status(404).send({ message: 'Item not found.' });
+    }
+
+    item.remove().then(function (item) {
+      res.send({
+        message: item.name + ' has been deleted'
+      });
+    });
+  });
+});
+
+/**
  * GET /create-admin-user
  * Easy way of adding an administrative user to the database
  */

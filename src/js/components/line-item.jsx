@@ -20,7 +20,7 @@ class LineItem extends React.Component {
   }
 
   handleIsBoughtClick() {
-    //this.props.onBoughtStatusChange(this.props._id, !this.props.isBought);
+    this.props.onBoughtStatusChange(this.props._id, !this.props.isBought, this.props.index);
   }
 
   render () {
@@ -46,9 +46,9 @@ class LineItem extends React.Component {
           <span className='line-item__label'>Who is the recipient?</span>
           <span className='line-item__value'>{this.props.whoFor}</span>
         </span>
-        <span className='line-item__property line-item__property--status' ref='isBought'>
+        <span className='line-item__property line-item__property--status' ref='isBought' onClick={this.handleIsBoughtClick.bind(this)}>
           <span className='line-item__label'>Is it bought?</span>
-          <span className='line-item__value'>{this.props.isBought === 'on' ? 'Yes' : 'No'}</span>
+          <span className='line-item__value'>{this.props.isBought ? 'Yes' : 'No'}</span>
         </span>
         <Link className='line-item__id' to={'/items/' + this.props._id}>{this.props._id}</Link>
       </div>

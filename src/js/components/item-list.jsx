@@ -6,10 +6,14 @@ class ItemList extends React.Component {
     super(props);
   }
 
+  handleOnBoughtStatusChange(id, isBought, index) {
+    this.props.onBoughtStatusChange(id, isBought, index);
+  }
+
   render() {
     var itemsList = this.props.items.map((item, index) => {
       return (
-        <LineItem {...item} key={ index } />
+        <LineItem {...item} key={ index } index={index} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} />
       );
     });
 
