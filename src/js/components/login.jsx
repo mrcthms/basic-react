@@ -49,7 +49,7 @@ class Login extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {loginMessage}
-        <div className={'form-group'}>
+        <div className='form-group'>
           <label className='control-label'>Username</label>
           <input type='text' className='form-control' ref='username' placeholder="Username" autoFocus/>
         </div>

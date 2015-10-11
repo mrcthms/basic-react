@@ -1,0 +1,42 @@
+/**
+ * Base SCSS File
+ *
+ * @requires _type.scss, _color.scss
+ */
+
+* {
+  box-sizing:border-box;
+}
+
+html,body {
+  min-height:100%;
+}
+
+html {
+  background: map-get($palette, 'background');
+  font-size:percentage(map-get($type, base) / 16);
+  overflow-y: scroll;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+  color:map-get($palette, 'text');
+  font-family:map-get($type, 'font');
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-smoothing:antialiased;
+}
+
+body {
+  font-size:1em;
+  line-height:map-get($type, 'line-height');
+}
+
+hr {
+  margin:rem(50) auto;
+  max-width:rem(600);
+  width:100%;
+}
