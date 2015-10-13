@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import ItemList from './item-list.jsx';
+import Button from './button.jsx';
 import AddItem from './add-item.jsx';
 import { requireAuth } from '../app/functions.jsx';
 import auth from './auth.jsx';
@@ -10,7 +11,8 @@ var Home = requireAuth(class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      showForm: false
     };
   }
 
@@ -64,6 +66,12 @@ var Home = requireAuth(class extends React.Component {
     });
   }
 
+  handleButtonClick() {
+    this.setState({
+      showForm: true
+    });
+  }
+
   handleOnBoughtStatusChange(id, isBought, index) {
     $.ajax({
       url: `${ITEMS_URL}/${id}`,
@@ -87,9 +95,10 @@ var Home = requireAuth(class extends React.Component {
   render() {
     var token = auth.getToken();
     return (
-      <div className="xmas-list">
+      <div className="xmas-list" + {this.state.showForm ? " js-show-add-form" : ""}>
         <ItemList items={this.state.items} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)}>
         </ItemList>
+        <Button onClick={this.handleButtonClick.bind(this)}>Add New Item</Button>
         <AddItem onFormSubmit={this.handleFormSubmit.bind(this)} />
       </div>
     );
