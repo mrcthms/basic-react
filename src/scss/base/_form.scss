@@ -8,7 +8,6 @@ input {
   border-color: map-get($palette, 'yellow');
   border-style: solid;
   border-width: 0 0 4px;
-  //box-shadow: 0px 1px 3px rgba(map-get($palette, 'sand'), 0.3) inset;
   display: block;
   font-weight: bold;
   padding: rem(32);
@@ -23,4 +22,15 @@ input {
 
 ::placeholder {
   color: map-get($palette, 'grey');
+}
+
+
+button[type=submit] {
+  background: map-get($palette, 'yellow');
+  border: none;
+  color: map-get($palette, 'background');
+  display: block;
+  font-weight: bold;
+  padding: rem(24) rem(32);
+  width: 100%;
 }

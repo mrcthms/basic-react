@@ -12,12 +12,13 @@ a {
 
   &:before {
     background: map-get($palette, 'grey');
-    bottom: 0;
+    bottom: 5%;
     content: "";
     height: 30%;
     left: 0;
     opacity: 0.3;
     position: absolute;
+    transition: .3s;
     width: 100%;
   }
 
@@ -25,11 +26,20 @@ a {
   &:focus {
     //color: map-get($palette, 'mint');
     outline: none;
+
+    &:before {
+      bottom: 20%;
+      height: 60%;
+    }
   }
 
   &:active {
     //color:map-get($palette, 'text');
     outline: none;
-  }
 
+    &:before {
+      bottom: 0%;
+      height: 100%;
+    }
+  }
 }
