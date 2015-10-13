@@ -7,20 +7,21 @@
   // background: map-get($palette, 'dark');
 
   a {
-    color: map-get($palette, 'slate');
+    //color: map-get($palette, 'slate');
     display: block;
     font-weight: bold;
-    padding: rem(16) rem(24);
+    padding: 0 rem(16);
+    //padding: rem(16) rem(24);
 
     &:hover,
     &:focus {
-      background-color: map-get($palette, 'slate');
-      color: map-get($palette, 'dark');
+      //background-color: map-get($palette, 'slate');
+      //color: map-get($palette, 'dark');
     }
 
     &:active {
-      background-color: map-get($palette, 'red');
-      color: map-get($palette, 'dark');
+      //background-color: map-get($palette, 'red');
+      //color: map-get($palette, 'dark');
     }
   }
 }
@@ -34,5 +35,6 @@
 
 .header__list-item {
   display: inline-block;
+  padding: rem(16) rem(24);
   vertical-align: middle;
 }

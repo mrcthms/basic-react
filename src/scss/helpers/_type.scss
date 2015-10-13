@@ -10,8 +10,8 @@
 
 $family: 'Helvetica Neue', sans-serif;
 $type: (
-  'base': 17,
-  'line-height': 1.5,
+  'base': 15,
+  'line-height': (24 / 15),
   'font': $family
 );
 
