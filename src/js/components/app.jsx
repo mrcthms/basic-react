@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
-import Navbar from  './navbar.jsx';
+import Header from  './header.jsx';
 import auth from './auth.jsx';
 
 class App extends React.Component {
@@ -27,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="xmas-list">
-        <Navbar loggedIn={this.state.loggedIn} name={this.state.name} />
+        <Header loggedIn={this.state.loggedIn} name={this.state.name} />
         <RouteHandler />
       </div>
     );

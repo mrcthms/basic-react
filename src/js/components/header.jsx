@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router';
 
-class Navbar extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,8 +27,8 @@ class Navbar extends React.Component {
     );
   }
 }
-Navbar.contextTypes = {
+Header.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
-export default Navbar;
+export default Header;
