@@ -10,10 +10,14 @@ class ItemList extends React.Component {
     this.props.onBoughtStatusChange(id, isBought, index);
   }
 
+  handleDeleteClick(id, index) {
+    this.props.onDeleteClick(id, index);
+  }
+
   render() {
     var itemsList = this.props.items.map((item, index) => {
       return (
-        <LineItem {...item} key={ index } index={index} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} />
+        <LineItem {...item} key={ index } index={index} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} />
       );
     });
 

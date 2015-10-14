@@ -14,20 +14,19 @@ class AddItem extends React.Component {
     event.preventDefault();
 
     var canSubmit = true;
-    var name = React.findDOMNode(this.refs.name).value.trim();
     var url = React.findDOMNode(this.refs.url).value.trim();
     var price = React.findDOMNode(this.refs.price).value.trim();
     var whoFor = React.findDOMNode(this.refs.whoFor).value.trim();
     var whoIsBuying = React.findDOMNode(this.refs.whoIsBuying).value.trim();
     var isBought = React.findDOMNode(this.refs.isBought).checked;
 
-    if (!name || !url || !price || !whoFor || !whoIsBuying || typeof isBought === 'undefined') {
+    if (!url || !price || !whoFor || !whoIsBuying || typeof isBought === 'undefined') {
       canSubmit = false;
     }
     if (canSubmit) {
-      this.props.onFormSubmit({ name, url, price, whoFor, whoIsBuying, isBought, _creator: auth.getToken() });
+      this.props.onFormSubmit({ url, price, whoFor, whoIsBuying, isBought, _creator: auth.getToken() });
 
-      var fields = ['name', 'url', 'price', 'whoFor', 'whoIsBuying', 'isBought'];
+      var fields = ['url', 'price', 'whoFor', 'whoIsBuying', 'isBought'];
 
       fields.forEach((field) => {
         React.findDOMNode(this.refs[field]).value = '';
@@ -44,10 +43,6 @@ class AddItem extends React.Component {
           <div className='add-item__form [ grid ]'>
             <h1 className='add-item__title'>Add Item</h1>
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <div className='form-group'>
-                <input type='text' className='form-group__input' ref='name' id='name' placeholder="Item" autoFocus/>
-                <label className='form-group__label' htmlFor='name'>Item</label>
-              </div>
               <div className='form-group'>
                 <input type='text' className='form-group__input' ref='url' id='url' placeholder="Url" />
                 <label className='form-group__label' htmlFor='url'>Item URL</label>

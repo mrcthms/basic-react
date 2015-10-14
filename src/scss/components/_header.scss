@@ -4,24 +4,45 @@
  */
 
 .header {
-  // background: map-get($palette, 'dark');
+  background: map-get($palette, 'background');
 
   a {
-    //color: map-get($palette, 'slate');
     display: block;
     font-weight: 200;
     padding: 0 rem(16);
-    //padding: rem(16) rem(24);
+    position: relative;
+    text-decoration: none;
+    transition: .3s;
+
+    &:before {
+      background: map-get($palette, 'grey');
+      bottom: 5%;
+      content: "";
+      height: 30%;
+      left: 0;
+      opacity: 0.3;
+      position: absolute;
+      transition: .3s;
+      width: 100%;
+    }
 
     &:hover,
     &:focus {
-      //background-color: map-get($palette, 'slate');
-      //color: map-get($palette, 'dark');
+      outline: none;
+
+      &:before {
+        bottom: 35%;
+        height: 60%;
+      }
     }
 
     &:active {
-      //background-color: map-get($palette, 'red');
-      //color: map-get($palette, 'dark');
+      outline: none;
+
+      &:before {
+        bottom: 0%;
+        height: 100%;
+      }
     }
   }
 }

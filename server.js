@@ -16,6 +16,7 @@ var Item = require('./models/item');
 var User = require('./models/user');
 var pass = require('./pass');
 var config = require('./config');
+var scraper = require('orgasmatron');
 
 mongoose.connect(config.database);
 mongoose.connection.on('error', function () {
@@ -35,6 +36,32 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+function scrapeData(url) {
+  scraper(url, function (err, bundle) {
+    if (bundle) {
+      var ogTitle = bundle.findWhere('meta', {
+        property: 'og:title'
+      });
+      var metaTitle = bundle.findWhere('meta', {
+        name: 'title'
+      });
+      var regularTitle = bundle.findWhere('title');
+      var title = '';
+      if (ogTitle) {
+        title = ogTitle.content;
+      } else if (metaTitle) {
+        title = metaTitle.content;
+      } else if (regularTitle) {
+        title = regularTitle._text;
+      }
+
+      return Promise.resolve(title);
+    } else {
+      return Promise.reject();
+    }
+  });
+}
 
 /**
  * GET /api/items
@@ -63,7 +90,7 @@ app.get('/api/items', function (req, res, next) {
  * Adds new items to the database
  */
 app.post('/api/items', function (req, res, next) {
-  var name = req.body.name;
+  // var name = req.body.name;
   var url = req.body.url;
   var price = req.body.price;
   var isBought = req.body.isBought;
@@ -71,21 +98,46 @@ app.post('/api/items', function (req, res, next) {
   var whoFor = req.body.whoFor;
   var _creator = req.body._creator;
 
-  var item = new Item({
-    name: name,
-    url: url,
-    price: price,
-    isBought: isBought,
-    whoIsBuying: whoIsBuying,
-    whoFor: whoFor,
-    _creator: _creator
-  });
-
-  item.save(function (err, savedItem) {
+  scraper(url, function (err, bundle) {
     if (err) {
-      return next(err);
+      next(err);
     }
-    res.send(savedItem);
+    if (bundle) {
+      var ogTitle = bundle.findWhere('meta', {
+        property: 'og:title'
+      });
+      var metaTitle = bundle.findWhere('meta', {
+        name: 'title'
+      });
+      var regularTitle = bundle.findWhere('title');
+      var name = '';
+      if (ogTitle) {
+        name = ogTitle.content;
+      } else if (metaTitle) {
+        name = metaTitle.content;
+      } else if (regularTitle) {
+        name = regularTitle._text;
+      }
+
+      var item = new Item({
+        name: name,
+        url: url,
+        price: price,
+        isBought: isBought,
+        whoIsBuying: whoIsBuying,
+        whoFor: whoFor,
+        _creator: _creator
+      });
+
+      item.save(function (err, savedItem) {
+        if (err) {
+          return next(err);
+        }
+        res.send(savedItem);
+      });
+    } else {
+      // res.send()
+    }
   });
 });
 

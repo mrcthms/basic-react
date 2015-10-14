@@ -5,17 +5,23 @@
 
 .line-item {
   padding: 16px 8px;
+  position: relative;
 
   + .line-item {
     border-top: 1px solid map-get($palette, 'dark-grey');
   }
 }
 
+.line-item__name {
+  display: block;
+  padding: 0 rem(8);
+}
+
 .line-item__property {
   display: inline-block;
-  padding: 0 8px;
+  padding: 0 rem(8);
   vertical-align: top;
-  width: percentage(1/6);
+  width: percentage(1/5);
 }
 
 .line-item__label {
@@ -27,6 +33,76 @@
 .line-item__value {
   display: block;
   word-wrap: break-word;
+}
+
+.line-item__bought-status {
+  color: map-get($palette, 'dark-grey');
+  text-decoration: line-through;
+  transition: .3s ease;
+
+  &:hover,
+  &:focus {
+
+  }
+}
+
+.line-item__bought-status--active {
+  color: map-get($palette, 'yellow');
+  text-decoration: none;
+}
+
+.line-item__delete {
+  background: map-get($palette, 'dark');
+  cursor: pointer;
+  height: rem(24);
+  margin-top: rem(-12);
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  text-indent: 101%;
+  transition: .3s;
+  white-space: nowrap;
+  width: rem(24);
+
+  &:before,
+  &:after {
+    background: map-get($palette, 'yellow');
+    content: '';
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    transition: .3s;
+  }
+
+  &:before {
+    height: rem(12);
+    margin: rem(-6) 0 0 rem(-1);
+    width: rem(2);
+  }
+
+  &:after {
+    height: rem(2);
+    margin: rem(-1) 0 0 rem(-6);
+    width: rem(12);
+    transition: .5s;
+  }
+
+  &:hover,
+  &:focus {
+    background: map-get($palette, 'dark-grey');
+    &:before {
+      transform: rotate(135deg);
+    }
+    &:after {
+      transform: rotate(315deg);
+    }
+  }
+
+  &:active {
+    transform: scale(0.75);
+  }
 }
 
 // .line-item__id {

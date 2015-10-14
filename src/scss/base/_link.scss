@@ -5,41 +5,17 @@
 
 a {
   color: map-get($palette, 'yellow');
-  display: inline-block;
-  position: relative;
   text-decoration: none;
   transition: .3s;
 
-  &:before {
-    background: map-get($palette, 'grey');
-    bottom: 5%;
-    content: "";
-    height: 30%;
-    left: 0;
-    opacity: 0.3;
-    position: absolute;
-    transition: .3s;
-    width: 100%;
-  }
-
   &:hover,
   &:focus {
-    //color: map-get($palette, 'mint');
+    color: map-get($palette, 'salmon');
     outline: none;
-
-    &:before {
-      bottom: 35%;
-      height: 60%;
-    }
   }
 
   &:active {
-    //color:map-get($palette, 'text');
+    color:map-get($palette, 'gold');
     outline: none;
-
-    &:before {
-      bottom: 0%;
-      height: 100%;
-    }
   }
 }
