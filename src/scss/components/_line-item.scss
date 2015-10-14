@@ -7,7 +7,7 @@
   padding: 16px 8px;
 
   + .line-item {
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid map-get($palette, 'dark-grey');
   }
 }
 
@@ -19,6 +19,7 @@
 }
 
 .line-item__label {
+  color: map-get($palette, 'grey');
   display: block;
   font-size: 10px;
 }
@@ -28,12 +29,12 @@
   word-wrap: break-word;
 }
 
-.line-item__id {
-  background: #f8f8f8;
-  border-radius: 4px;
-  display: inline-block;
-  font-size: 11px;
-  font-weight: bold;
-  margin-top: 4px;
-  padding: 4px 8px;
-}
+// .line-item__id {
+//   background: #f8f8f8;
+//   border-radius: 4px;
+//   display: inline-block;
+//   font-size: 11px;
+//   font-weight: bold;
+//   margin-top: 4px;
+//   padding: 4px 8px;
+// }

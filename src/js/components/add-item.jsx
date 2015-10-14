@@ -40,35 +40,35 @@ class AddItem extends React.Component {
               <div className='panel-heading'>Add Item</div>
               <div className='panel-body'>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Item Name</label>
-                    <input type='text' className='form-control' ref='name' placeholder="Your name" autoFocus/>
+                  <div className='form-group'>
+                    <input type='text' className='form-group__input' ref='name' placeholder="Your name" autoFocus/>
+                    <label className='form-group__label'>Item Name</label>
                   </div>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Item URL</label>
-                    <input type='text' className='form-control' ref='url' placeholder="Url" />
+                  <div className='form-group'>
+                    <input type='text' className='form-group__input' ref='url' placeholder="Url" />
+                    <label className='form-group__label'>Item URL</label>
                   </div>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Item Price</label>
-                    <input type='text' className='form-control' ref='price' placeholder="Price" />
+                  <div className='form-group'>
+                    <input type='text' className='form-group__input' ref='price' placeholder="Price" />
+                    <label className='form-group__label'>Item Price</label>
                   </div>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Who For?</label>
-                    <input type='text' className='form-control' ref='whoFor' placeholder="Who is it for?" />
+                  <div className='form-group'>
+                    <input type='text' className='form-group__input' ref='whoFor' placeholder="Who is it for?" />
+                    <label className='form-group__label'>Who For?</label>
                   </div>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Who iss Buying?</label>
-                    <input type='text' className='form-control' ref='whoIsBuying' placeholder="Who is buying it?" />
+                  <div className='form-group'>
+                    <input type='text' className='form-group__input' ref='whoIsBuying' placeholder="Who is buying it?" />
+                    <label className='form-group__label'>Who is Buying?</label>
                   </div>
-                  <div className={'form-group'}>
-                    <label className='control-label'>Item Status</label>
+                  <div className='form-group form-group--checkbox'>
+                    <label className='form-group__label'>Item Status</label>
                     <div className='checkbox'>
                       <label>
-                        <input type='checkbox' className='form-control' ref='isBought' /> Bought?
+                        <input type='checkbox' className='form-group__input' ref='isBought' /> Bought?
                       </label>
                     </div>
                   </div>
-                  <button type='submit' className='btn btn-primary'>Submit</button>
+                  <button type='submit' className='btn btn-primary'><span>Submit</span></button>
                 </form>
               </div>
             </div>

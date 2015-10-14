@@ -18,8 +18,9 @@ class ItemList extends React.Component {
     });
 
     return (
-      <div className='container'>
-        <div className='list-group'>
+      <div className='item-list [ grid ]'>
+        <div className='[ grid__col ]'>
+          <h1 className='item-list__title'>Your Items To Buy</h1>
           {itemsList}
         </div>
       </div>

@@ -1,0 +1,16 @@
+/*
+ * Button
+ *========================================
+ */
+
+.button {
+  $v: rem(4);
+  background: map-get($palette, 'gold');
+  border: none;
+  bottom: rem(32);
+  box-shadow: 0px 1px 3px map-get($palette, 'dark');
+  padding: rem(16) rem(24);
+  position: fixed;
+  right: rem(32);
+  z-index: 2;
+}

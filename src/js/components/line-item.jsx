@@ -28,7 +28,7 @@ class LineItem extends React.Component {
       <div className='line-item'>
         <span className='line-item__property line-item__property--name' ref='name'>
           <span className='line-item__label'>Name</span>
-          <span className='line-item__value'>{this.props.name}</span>
+          <Link className='line-item__value' to={'/items/' + this.props._id}>{this.props.name}</Link>
         </span>
         <span className='line-item__property line-item__property--url' ref='url'>
           <span className='line-item__label'>Url</span>
@@ -50,7 +50,6 @@ class LineItem extends React.Component {
           <span className='line-item__label'>Is it bought?</span>
           <span className='line-item__value'>{this.props.isBought ? 'Yes' : 'No'}</span>
         </span>
-        <Link className='line-item__id' to={'/items/' + this.props._id}>{this.props._id}</Link>
       </div>
     );
   }
