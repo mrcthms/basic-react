@@ -47,17 +47,22 @@ class Login extends React.Component {
       );
     }
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className='login [ grid ]' onSubmit={this.handleSubmit}>
         {loginMessage}
-        <div className='form-group'>
-          <label className='control-label'>Username</label>
-          <input type='text' className='form-control' ref='username' placeholder="Username" autoFocus/>
+        <div className='[ grid__col grid__col--half ]'>
+          <h1 className='login__title'>Your Christmas Gift&nbsp;List Planner</h1>
         </div>
-        <div className={'form-group'}>
-          <label className='control-label'>Password</label>
-          <input type='text' className='form-control' ref='password' placeholder="Password" />
+        <div className='[ grid__col grid__col--half ]'>
+          <div className='form-group'>
+            <input type='text' className='form-group__input' ref='username' placeholder="Username" autoFocus/>
+            <label className='form-group__label'>Username</label>
+          </div>
+          <div className={'form-group'}>
+            <input type='text' className='form-group__input' ref='password' placeholder="Password" />
+            <label className='form-group__label'>Password</label>
+          </div>
+          <button type='submit' className='btn btn-primary'><span>Submit</span></button>
         </div>
-        <button type='submit' className='btn btn-primary'>Submit</button>
         {this.state.error && (
           <p>Bad login information</p>
         )}

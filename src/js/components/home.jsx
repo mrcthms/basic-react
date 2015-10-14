@@ -95,7 +95,7 @@ var Home = requireAuth(class extends React.Component {
   render() {
     var token = auth.getToken();
     return (
-      <div className={this.state.showForm ? "xmas-list js-show-add-form" : "xmas-list"}>
+      <div className={this.state.showForm ? "home js-show-add-form" : "home"}>
         <ItemList items={this.state.items} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)}>
         </ItemList>
         <Button onClick={this.handleButtonClick.bind(this)}>Add New Item</Button>

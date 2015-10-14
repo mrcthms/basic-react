@@ -8,7 +8,7 @@
  * measurement.
 **/
 
-$family: 'Helvetica Neue', sans-serif;
+$family: 'acumin-pro', 'Helvetica Neue', sans-serif;
 $type: (
   'base': 15,
   'line-height': (24 / 15),
@@ -16,7 +16,7 @@ $type: (
 );
 
 // Our base font size for the site. Usually the most common body copy font size.
-$font-default-size: 20;
+//$font-default-size: 20;
 
 // Our base line height.
 $font-default-line-height: 1.5;
@@ -55,7 +55,7 @@ $font-stack-header:   "sans-serif";
 }
 */
 
-@function em($target, $content: $font-default-size) {
+@function em($target, $content: map-get($type, 'base')) {
   @if $target == 0 { @return 0 }
   @return $target / $content + 0em;
 }
@@ -72,7 +72,7 @@ $font-stack-header:   "sans-serif";
  *                      used.
  */
 
-@function rem($target, $content: $font-default-size) {
+@function rem($target, $content: map-get($type, 'base')) {
   @if $target == 0 { @return 0 }
   @return $target / $content + 0rem;
 }
@@ -122,11 +122,11 @@ $font-stack-header:   "sans-serif";
  *            $font-default-size value is used.
 **/
 
-@mixin font-size($value, $base: $font-default-size) {
+@mixin font-size($value, $base: map-get($type, 'base')) {
   $rem: $value/$base;
   font-size:$rem + rem;
 }
-@mixin font-size-em($value, $base: $font-default-size) {
+@mixin font-size-em($value, $base :map-get($type, 'base')) {
   $em: $value/$base;
   font-size:$value + px;
   font-size:$em + rem;
@@ -134,7 +134,7 @@ $font-stack-header:   "sans-serif";
 
 @mixin font-sizes($sizes) {
   // Grab the base font value for setting the rems
-  $base: $font-default-size;
+  $base: map-get($type, 'base');
     // Loop through the Map of the sizes
     @each $font-break, $font-num in $sizes {
       // Set the rem value

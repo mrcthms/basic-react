@@ -1,0 +1,12 @@
+/*
+ * Typography
+ *========================================
+ */
+
+h1 {
+  display: table-caption;
+  font-size: rem(64);
+  line-height: (48 / 64);
+  margin: 0 0 rem(32);
+  // word-spacing: 100%;
+}

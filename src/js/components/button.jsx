@@ -14,7 +14,7 @@ class Button extends React.Component {
   render () {
     return (
       <button className="button" onClick={this.handleOnClick.bind(this)}>
-        {this.props.chilren}
+        {this.props.children}
       </button>
     );
   }

@@ -1,0 +1,23 @@
+/*
+ * Gri
+ *========================================
+ */
+
+.grid {
+  padding:0 rem(16);
+  width: 100%;
+}
+
+.grid__col {
+  display: block;
+  width: 100%;
+}
+
+
+.grid__col--half {
+  @include on(640) {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+  }
+}
