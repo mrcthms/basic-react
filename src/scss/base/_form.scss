@@ -10,6 +10,8 @@ input {
   border-width: 0 0 4px;
   display: block;
   font-weight: 200;
+  height: rem(76);
+  line-height: map-get($type, 'line-height');
   padding: rem(24);
   transition: .3s;
   width: 100%;
@@ -24,6 +26,10 @@ input {
   color: map-get($palette, 'EDE7D9');
 }
 
+/*
+ * Submit Button
+ *========================================
+ */
 
 button[type=submit] {
   background: none;
@@ -73,6 +79,30 @@ button[type=submit] {
 }
 
 /*
+ * Checkbox
+ *========================================
+ */
+
+input[type='checkbox'] {
+  appearance: none;
+  background: map-get($palette, 'dark');
+  border: 4px solid map-get($palette, 'grey');
+  border-radius: 50%;
+  box-shadow: 0 0 0 rem(6) map-get($palette, 'dark') inset,
+              0 0 0 rem(0) map-get($palette, 'yellow') inset;
+  display: inline-block;
+  height: rem(32);
+  transition: .3s;
+  vertical-align: middle;
+  width: rem(32);
+
+  &:checked {
+    box-shadow: 0 0 0 rem(6) map-get($palette, 'dark') inset,
+                0 0 0 rem(12) map-get($palette, 'yellow') inset;
+  }
+}
+
+/*
  * Form Group
  *========================================
  */
@@ -103,5 +133,30 @@ button[type=submit] {
 
   .form-group__input:focus ~ & {
     opacity: 1;
+  }
+}
+
+/*
+ * Form Group - Checkboc
+ *========================================
+ */
+
+.form-group__checkbox {
+  display: block;
+
+  .form-group__input {
+    padding: 0;
+  }
+
+  .form-group__label {
+    background: none;
+    color: map-get($palette, 'text');
+    display: inline-block;
+    font-size: 1rem;
+    letter-spacing: 0;
+    opacity: 1;
+    position: static;
+    text-transform: none;
+    vertical-align: middle;
   }
 }

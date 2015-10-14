@@ -6,6 +6,10 @@ class AddItem extends React.Component {
     super(props);
   }
 
+  handleOnClick() {
+    this.props.onClick();
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -33,45 +37,45 @@ class AddItem extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-sm-8'>
-            <div className='panel panel-default'>
-              <div className='panel-heading'>Add Item</div>
-              <div className='panel-body'>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                  <div className='form-group'>
-                    <input type='text' className='form-group__input' ref='name' placeholder="Your name" autoFocus/>
-                    <label className='form-group__label'>Item Name</label>
-                  </div>
-                  <div className='form-group'>
-                    <input type='text' className='form-group__input' ref='url' placeholder="Url" />
-                    <label className='form-group__label'>Item URL</label>
-                  </div>
-                  <div className='form-group'>
-                    <input type='text' className='form-group__input' ref='price' placeholder="Price" />
-                    <label className='form-group__label'>Item Price</label>
-                  </div>
-                  <div className='form-group'>
-                    <input type='text' className='form-group__input' ref='whoFor' placeholder="Who is it for?" />
-                    <label className='form-group__label'>Who For?</label>
-                  </div>
-                  <div className='form-group'>
-                    <input type='text' className='form-group__input' ref='whoIsBuying' placeholder="Who is buying it?" />
-                    <label className='form-group__label'>Who is Buying?</label>
-                  </div>
-                  <div className='form-group form-group--checkbox'>
-                    <label className='form-group__label'>Item Status</label>
-                    <div className='checkbox'>
-                      <label>
-                        <input type='checkbox' className='form-group__input' ref='isBought' /> Bought?
-                      </label>
-                    </div>
-                  </div>
-                  <button type='submit' className='btn btn-primary'><span>Submit</span></button>
-                </form>
+      <div className='add-item'>
+        <div className='add-item__bg'></div>
+        <div className='add-item__close' onClick={this.handleOnClick.bind(this)}>&times;</div>
+        <div className='add-item__modal'>
+          <div className='add-item__form [ grid ]'>
+            <h1 className='add-item__title'>Add Item</h1>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div className='form-group'>
+                <input type='text' className='form-group__input' ref='name' id='name' placeholder="Item" autoFocus/>
+                <label className='form-group__label' htmlFor='name'>Item</label>
               </div>
-            </div>
+              <div className='form-group'>
+                <input type='text' className='form-group__input' ref='url' id='url' placeholder="Url" />
+                <label className='form-group__label' htmlFor='url'>Item URL</label>
+              </div>
+              <div className='form-group'>
+                <input type='text' className='form-group__input' ref='price' id='price' placeholder="Price" />
+                <label className='form-group__label' htmlFor='price'>Item Price</label>
+              </div>
+              <div className='[ grid__col grid__col--half ]'>
+                <div className='form-group'>
+                  <input type='text' className='form-group__input' ref='whoFor' id='whoFor' placeholder="Who is it for?" />
+                  <label className='form-group__label' htmlFor='whoFor'>Who For?</label>
+                </div>
+              </div>
+              <div className='[ grid__col grid__col--half ]'>
+                <div className='form-group'>
+                  <input type='text' className='form-group__input' ref='whoIsBuying' id='whoIsBuying' placeholder="Who is buying it?" />
+                  <label className='form-group__label' htmlFor='whoIsBuying'>Who is Buying?</label>
+                </div>
+              </div>
+              <div className='form-group form-group--checkbox'>
+                <label className='form-group__checkbox' htmlFor='isBought'>
+                  <input type='checkbox' className='form-group__input' ref='isBought' id='isBought' />
+                  <span className='form-group__label'>Is this already bought?</span>
+                </label>
+              </div>
+              <button type='submit' className='btn btn-primary'><span>Submit</span></button>
+            </form>
           </div>
         </div>
       </div>

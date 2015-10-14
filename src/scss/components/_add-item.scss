@@ -1,0 +1,65 @@
+/*
+ * Add Item
+ *========================================
+ */
+
+.add-item {
+  display: none;
+
+  .js-show-add-item & {
+    display: block;
+  }
+}
+
+.add-item {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.add-item__close {
+  font-size: rem(64);
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.add-item__bg {
+  background: map-get($palette, 'dark');
+  height: 100%;
+  left: 0;
+  opacity: 0.95;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*
+ * Modal
+ *========================================
+ */
+
+.add-item__modal {
+  background: map-get($palette, 'background');
+  margin:5% auto;
+  max-height: 90%;
+  max-width: rem(600);
+  overflow: auto;
+  padding: rem(16) 0;
+  position: relative;
+  width: 100%;
+}
+
+/*
+ * Checkbox
+ *========================================
+ */
+
+.add-item {
+  .form-group__checkbox {
+    margin-top: rem(16);
+  }
+}
