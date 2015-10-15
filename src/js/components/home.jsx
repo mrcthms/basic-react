@@ -58,7 +58,8 @@ var Home = requireAuth(class extends React.Component {
         var newItems = currentItems.concat(savedItem);
 
         this.setState({
-          items: newItems
+          items: newItems,
+          showForm: false
         });
       },
       error: (xhr, status, err) => {

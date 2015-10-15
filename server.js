@@ -37,32 +37,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-function scrapeData(url) {
-  scraper(url, function (err, bundle) {
-    if (bundle) {
-      var ogTitle = bundle.findWhere('meta', {
-        property: 'og:title'
-      });
-      var metaTitle = bundle.findWhere('meta', {
-        name: 'title'
-      });
-      var regularTitle = bundle.findWhere('title');
-      var title = '';
-      if (ogTitle) {
-        title = ogTitle.content;
-      } else if (metaTitle) {
-        title = metaTitle.content;
-      } else if (regularTitle) {
-        title = regularTitle._text;
-      }
-
-      return Promise.resolve(title);
-    } else {
-      return Promise.reject();
-    }
-  });
-}
-
 /**
  * GET /api/items
  * Gets the current items in the database.

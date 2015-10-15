@@ -4,6 +4,9 @@ import auth from './auth.jsx';
 class AddItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      errors: false
+    };
   }
 
   handleOnClick() {
@@ -31,6 +34,10 @@ class AddItem extends React.Component {
       fields.forEach((field) => {
         React.findDOMNode(this.refs[field]).value = '';
       });
+    } else {
+      this.setState({
+        errors: 'Please make sure you fill in all the fields'
+      });
     }
   }
 
@@ -41,7 +48,12 @@ class AddItem extends React.Component {
         <div className='add-item__close' onClick={this.handleOnClick.bind(this)}>&times;</div>
         <div className='add-item__modal'>
           <div className='add-item__form [ grid ]'>
-            <h1 className='add-item__title'>Add Item</h1>
+            <div className='[ grid__col grid__col--half ]'>
+              <h1 className='add-item__title'>Add Item</h1>
+            </div>
+            <div className='[ grid__col grid__col--half ]'>
+              <span className='form-error'>{this.state.errors}</span>
+            </div>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className='form-group'>
                 <input type='text' className='form-group__input' ref='url' id='url' placeholder="Url" />

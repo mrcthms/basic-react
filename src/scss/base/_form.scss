@@ -160,3 +160,12 @@ input[type='checkbox'] {
     vertical-align: middle;
   }
 }
+
+/*
+ * Error
+ *========================================
+ */
+
+.form-error {
+  color: map-get($palette, 'error');
+}
