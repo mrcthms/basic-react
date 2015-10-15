@@ -23,10 +23,13 @@ class ItemList extends React.Component {
 
     return (
       <div className='item-list [ grid ]'>
-        <div className='[ grid__col ]'>
+        <div className='[ grid__col grid__col--half ]'>
           <h1 className='item-list__title'>Your Items To Buy</h1>
-          {itemsList}
         </div>
+        <div className='[ grid__col grid__col--half ]'>
+          <h1 className='item-list__title'>Items You Have Bought</h1>
+        </div>
+        {itemsList}
       </div>
     );
   }

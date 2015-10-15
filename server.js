@@ -209,10 +209,13 @@ app.post('/api/login', function (req, res) {
  * POST /api/signup
  * Sign a user up
  */
-app.post('/api/signup', function (req, res) {
+app.post('/api/signup', function (req, res, next) {
   User.findOne({
     username: req.body.username
   }, function (err, user) {
+    if (err) {
+      next(err);
+    }
     if (user) {
       res.send(401);
     } else {
