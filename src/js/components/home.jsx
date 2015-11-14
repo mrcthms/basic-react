@@ -3,6 +3,7 @@ import $ from 'jquery';
 import ItemList from './item-list.jsx';
 import Button from './button.jsx';
 import AddItem from './add-item.jsx';
+import Filter from './filter.jsx';
 import { requireAuth } from '../app/functions.jsx';
 import auth from './auth.jsx';
 import { ITEMS_URL } from '../config';
@@ -13,7 +14,11 @@ var Home = requireAuth(class extends React.Component {
     super(props);
     this.state = {
       items: [],
-      showForm: false
+      showForm: false,
+      filterData: {
+        whoFor: '',
+        whoIsBuying: ''
+      }
     };
   }
 
@@ -111,14 +116,21 @@ var Home = requireAuth(class extends React.Component {
     });
   }
 
+  handleFilterChange(data) {
+    this.setState({
+      filterData: data
+    });
+  }
+
   render() {
     var token = auth.getToken();
     return (
       <div className={this.state.showForm ? "home js-show-add-item" : "home"}>
-        <ItemList items={this.state.items} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} onDeleteClick={this.handleOnDeleteClick.bind(this)}>
+        <ItemList items={this.state.items} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} onDeleteClick={this.handleOnDeleteClick.bind(this)} filterData={this.state.filterData}>
         </ItemList>
         <Button onClick={this.handleButtonClick.bind(this)}>Add New Item</Button>
         <AddItem onFormSubmit={this.handleFormSubmit.bind(this)} onClick={this.handleButtonClick.bind(this)} />
+        <Filter onFilterChange={this.handleFilterChange.bind(this)} />
       </div>
     );
   }

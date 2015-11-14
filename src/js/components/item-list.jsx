@@ -16,9 +16,13 @@ class ItemList extends React.Component {
 
   render() {
     var itemsList = this.props.items.map((item, index) => {
-      return (
-        <LineItem {...item} key={ index } index={index} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} />
-      );
+      var whoFor = item.whoFor.toLowerCase();
+      var whoIsBuying = item.whoIsBuying.toLowerCase();
+      if (whoFor.indexOf(this.props.filterData.whoFor.toLowerCase()) > -1 && whoIsBuying.indexOf(this.props.filterData.whoIsBuying.toLowerCase()) > -1) {
+        return (
+          <LineItem {...item} key={ index } index={index} onBoughtStatusChange={this.handleOnBoughtStatusChange.bind(this)} onDeleteClick={this.handleDeleteClick.bind(this)} />
+        );
+      }
     });
 
     return (

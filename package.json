@@ -17,12 +17,13 @@
     "express-session": "^1.11.3",
     "history": "^1.12.3",
     "jquery": "^1.11.2",
-    "lmn-gulp-tasks": "git://github.com/Lostmyname/lmn-gulp-tasks.git#master",
+    "lmn-gulp-tasks": "git://github.com/mrcthms/lmn-gulp-tasks.git#master",
     "localStorage": "^1.0.3",
-    "orgasmatron": "^0.1.1",
     "mongoose": "^4.0.7",
     "mongoose-uniqueid": "0.0.5",
     "morgan": "^1.6.1",
+    "nodemon": "^1.8.1",
+    "orgasmatron": "^0.1.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "react-router-express": "^1.0.0",
@@ -36,7 +37,7 @@
     "babelify": "^6.3.0",
     "browser-sync": "^1.5.1",
     "gulp": "^3.8.8",
-    "lmn-gulp-tasks": "git://github.com/Lostmyname/lmn-gulp-tasks.git#master"
+    "lmn-gulp-tasks": "git://github.com/mrcthms/lmn-gulp-tasks.git#master"
   },
   "scripts": {
     "start": "babel-node server.js",

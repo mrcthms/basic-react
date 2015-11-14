@@ -18,7 +18,7 @@ class AddItem extends React.Component {
 
     var canSubmit = true;
     var url = React.findDOMNode(this.refs.url).value.trim();
-    var price = React.findDOMNode(this.refs.price).value.trim();
+    var price = React.findDOMNode(this.refs.price).value.trim().toFixed(2);
     var whoFor = React.findDOMNode(this.refs.whoFor).value.trim();
     var whoIsBuying = React.findDOMNode(this.refs.whoIsBuying).value.trim();
     var isBought = React.findDOMNode(this.refs.isBought).checked;

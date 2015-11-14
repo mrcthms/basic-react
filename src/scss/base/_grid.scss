@@ -21,3 +21,11 @@
     width: 50%;
   }
 }
+
+.grid__col--third {
+  @include on(640) {
+    display: inline-block;
+    vertical-align: top;
+    width: percentage(1/3);
+  }
+}

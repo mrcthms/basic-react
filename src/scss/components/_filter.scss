@@ -1,0 +1,12 @@
+/*
+ * Filter
+ *========================================
+ */
+
+.filter {
+  position: fixed;
+  left: rem(16);
+  bottom: rem(16);
+  max-width: calc(100% - 32px);
+  width: rem(500);
+}
