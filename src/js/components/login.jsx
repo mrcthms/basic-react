@@ -1,7 +1,8 @@
 import React from 'react';
 import auth from './auth.jsx';
 import Router from 'react-router';
-import { Link } from 'react-router';
+import { Link, Navigation } from 'react-router';
+import reactMixin from 'react-mixin';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,12 +27,12 @@ class Login extends React.Component {
           loggedIn: false
         });
       } else {
+        this.transitionTo('/');
         return this.setState({
           error: false,
           loggedIn: true,
           username: username
         });
-        console.log('logged in successfully with ' + email);
       }
     });
   }
@@ -72,7 +73,10 @@ class Login extends React.Component {
 }
 
 Login.contextTypes = {
-  router: React.PropTypes.func
+  router: React.PropTypes.func.isRequired
 };
+
+reactMixin(Login.prototype, Navigation);
+
 
 export default Login;

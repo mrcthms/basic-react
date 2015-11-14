@@ -1,6 +1,7 @@
 import React from 'react';
 import auth from './auth.jsx';
-import { Link, History } from 'react-router';
+import { Link, History, Navigation } from 'react-router';
+import reactMixin from 'react-mixin';
 
 class Logout extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Logout extends React.Component {
 
   componentDidMount() {
     auth.logout();
+    this.transitionTo('/login');
   }
 
   render() {
@@ -20,5 +22,11 @@ class Logout extends React.Component {
     );
   }
 }
+
+Logout.contextTypes = {
+  router: React.PropTypes.func.isRequired,
+};
+
+reactMixin(Logout.prototype, Navigation);
 
 export default Logout
