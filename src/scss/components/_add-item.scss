@@ -27,6 +27,59 @@
   top: 0;
 }
 
+.add-item__close {
+  background: map-get($palette, 'dark');
+  cursor: pointer;
+  height: rem(48);
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  text-indent: 101%;
+  transition: .3s;
+  white-space: nowrap;
+  width: rem(48);
+
+  &:before,
+  &:after {
+    background: map-get($palette, 'yellow');
+    content: '';
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    transition: .3s;
+  }
+
+  &:before {
+    height: rem(24);
+    margin: rem(-12) 0 0 rem(-1);
+    width: rem(2);
+  }
+
+  &:after {
+    height: rem(2);
+    margin: rem(-1) 0 0 rem(-12);
+    width: rem(24);
+    transition: .5s;
+  }
+
+  &:hover,
+  &:focus {
+    background: map-get($palette, 'dark-grey');
+    &:before {
+      transform: rotate(135deg);
+    }
+    &:after {
+      transform: rotate(315deg);
+    }
+  }
+
+  &:active {
+    transform: scale(0.75);
+  }
+}
+
 .add-item__bg {
   background: map-get($palette, 'dark');
   height: 100%;
