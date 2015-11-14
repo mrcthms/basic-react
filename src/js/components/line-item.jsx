@@ -54,7 +54,7 @@ class LineItem extends React.Component {
         </span>
         <span className='line-item__property line-item__property--price' ref='price'>
           <span className='line-item__label'>Price</span>
-          <span className='line-item__value'>{this.props.price}</span>
+          <span className='line-item__value'>{this.props.price.replace(/^([^\£])/, '£$1')}</span>
         </span>
         <span className='line-item__property line-item__property--who-is-buying' ref='whoIsBuying'>
           <span className='line-item__label'>Who is buying?</span>

@@ -13,9 +13,9 @@ class Header extends React.Component {
     if (this.props.loggedIn) {
       loggedInOrOut = ['hello', 'logout'].map((item) => {
         if (item === 'hello') {
-          return <li className='header__list-item'>Hello, {this.props.name}!</li>;
+          return <li className='header__list-item' key={item}>Hello, {this.props.name}!</li>;
         } else if (item ==='logout') {
-          return <li className='header__list-item'><Link to='/logout'>Logout</Link></li>
+          return <li className='header__list-item' key={item}><Link to='/logout'>Logout</Link></li>
         }
       });
     }
