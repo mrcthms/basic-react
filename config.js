@@ -1,3 +1,3 @@
 module.exports = {
-  database: process.env.MONGO_URI || 'localhost/basic_react'
+  database: process.env.MONGOLAB_URI || 'localhost/basic_react'
 };
