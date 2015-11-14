@@ -42,7 +42,8 @@
   },
   "scripts": {
     "start": "babel-node server.js",
-    "watch": "nodemon --exec babel-node -- server.js"
+    "watch": "nodemon --exec babel-node -- server.js",
+    "postinstall": "gulp build"
   },
   "license": "MIT",
   "private": true

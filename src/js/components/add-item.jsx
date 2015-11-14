@@ -65,14 +65,14 @@ class AddItem extends React.Component {
               </div>
               <div className='[ grid__col grid__col--half ]'>
                 <div className='form-group'>
-                  <input type='text' className='form-group__input' ref='whoFor' id='whoFor' placeholder="Who is it for?" />
-                  <label className='form-group__label' htmlFor='whoFor'>Who For?</label>
+                  <input type='text' className='form-group__input' ref='whoIsBuying' id='whoIsBuying' placeholder="Who is buying it?" />
+                  <label className='form-group__label' htmlFor='whoIsBuying'>Who is Buying?</label>
                 </div>
               </div>
               <div className='[ grid__col grid__col--half ]'>
                 <div className='form-group'>
-                  <input type='text' className='form-group__input' ref='whoIsBuying' id='whoIsBuying' placeholder="Who is buying it?" />
-                  <label className='form-group__label' htmlFor='whoIsBuying'>Who is Buying?</label>
+                  <input type='text' className='form-group__input' ref='whoFor' id='whoFor' placeholder="Who is it for?" />
+                  <label className='form-group__label' htmlFor='whoFor'>Who For?</label>
                 </div>
               </div>
               <div className='form-group form-group--checkbox'>
