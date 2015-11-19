@@ -54,19 +54,19 @@ class Signup extends React.Component {
       );
     }
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="[ grid ]" onSubmit={this.handleSubmit}>
         {loginMessage}
         <div className={'form-group'}>
-          <label className='control-label'>Username</label>
-          <input type='text' className='form-control' ref='username' placeholder="Username" autoFocus/>
+          <label className='form-group__input' >Username</label>
+          <input type='text' className='form-group__label' ref='username' placeholder="Username" autoFocus/>
         </div>
         <div className={'form-group'}>
-          <label className='control-label'>Password</label>
-          <input type='text' className='form-control' ref='password' placeholder="Password" />
+          <label className='form-group__input'>Password</label>
+          <input type='text' className='form-group__label' ref='password' placeholder="Password" />
         </div>
         <div className={'form-group'}>
-          <label className='control-label'>Confirm Password</label>
-          <input type='text' className='form-control' ref='passwordConfirm' placeholder="Password" />
+          <label className='form-group__input'>Confirm Password</label>
+          <input type='text' className='form-group__label' ref='passwordConfirm' placeholder="Password" />
         </div>
         <button type='submit' className='btn btn-primary'>Submit</button>
         {this.state.error && (
