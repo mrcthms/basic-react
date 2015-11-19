@@ -240,7 +240,7 @@ app.post('/api/signup', function (req, res, next) {
   });
 });
 
-app.use(function (req, res) {
+app.use(function (req, res, next) {
   var router = Router.create({
     routes: routes,
     location: req.url,
