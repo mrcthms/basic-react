@@ -21,15 +21,9 @@ gulp.task('scss', loadLmnTask('scss', {
   src: './src/scss/*.{sass,scss}',
   dest: path.join(buildPath, 'stylesheets'),
   imagePath: '../images',
-  manifest: false
+  rev: false
 }));
 
-gulp.task('move-fonts', loadLmnTask('copy', {
-  src: './bower_components/bootstrap-sass/assets/fonts/bootstrap/*.{eot,svg,ttf,woff,woff2}',
-  dest: path.join(buildPath, 'fonts/bootstrap'),
-  rev: false,
-  flatten: false
-}));
 
 gulp.task('build', ['js', 'scss']);
 
@@ -40,7 +34,7 @@ gulp.task('build', ['js', 'scss']);
 //   flatten: false
 // }));
 
-gulp.task('default', ['build', 'move-fonts'], function () {
+gulp.task('default', ['build'], function () {
   var config = {
     // server: {
     //   baseDir: '.'
