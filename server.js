@@ -247,15 +247,19 @@ app.use(function (req, res, next) {
     onError: function (error) {
       next(error);
     },
-    onAbort: function (abortReason) {
-      var params, query, to, url;
+    onAbort: function (abortReason, location) {
+      // var params, query, to, url;
+      // if (abortReason.constructor.name === 'Redirect') {
+      //   to = abortReason.to, params = abortReason.params, query = abortReason.query;
+      //   url = router.makePath(to, params, query);
+      //   return res.redirect(url);
+      // } else {
+      //   return next(abortReason);
+      // }
       if (abortReason.constructor.name === 'Redirect') {
-        to = abortReason.to, params = abortReason.params, query = abortReason.query;
-        url = router.makePath(to, params, query);
-        return res.redirect(url);
-      } else {
-        return next(abortReason);
+        return res.redirect(this.makePath(abortReason.to, abortReason.params, abortReason.query));
       }
+      //next(abortReason);
     }
   });
   router.run(routes, req.path, function (Handler) {
