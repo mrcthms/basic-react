@@ -20,7 +20,8 @@ gulp.task('js-quality', loadLmnTask('js-quality', {
 gulp.task('scss', loadLmnTask('scss', {
   src: './src/scss/*.{sass,scss}',
   dest: path.join(buildPath, 'stylesheets'),
-  imagePath: '../images'
+  imagePath: '../images',
+  manifest: false
 }));
 
 gulp.task('move-fonts', loadLmnTask('copy', {
