@@ -241,7 +241,24 @@ app.post('/api/signup', function (req, res, next) {
 });
 
 app.use(function (req, res) {
-  Router.run(routes, req.path, function (Handler) {
+  var router = Router.create({
+    routes: routes,
+    location: req.url,
+    onError: function (error) {
+      next(error);
+    },
+    onAbort: function (abortReason) {
+      var params, query, to, url;
+      if (abortReason.constructor.name === 'Redirect') {
+        to = abortReason.to, params = abortReason.params, query = abortReason.query;
+        url = router.makePath(to, params, query);
+        return res.redirect(url);
+      } else {
+        return next(abortReason);
+      }
+    }
+  });
+  router.run(routes, req.path, function (Handler) {
     var html = React.renderToString(React.createElement(Handler));
     var page = swig.renderFile('views/index.html', { html: html });
     res.send(page);
