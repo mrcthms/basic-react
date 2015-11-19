@@ -1,6 +1,6 @@
 import React from 'react';
 import LineItem from './line-item.jsx';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 class ItemList extends React.Component {
   constructor(props) {

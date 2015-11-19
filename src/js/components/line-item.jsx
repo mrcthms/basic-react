@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 class LineItem extends React.Component {
   constructor(props) {
