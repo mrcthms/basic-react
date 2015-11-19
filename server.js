@@ -243,7 +243,7 @@ app.post('/api/signup', function (req, res, next) {
 app.use(function (req, res, next) {
   var router = Router.create({
     routes: routes,
-    location: req.url,
+    location: req.path,
     onError: function (error) {
       next(error);
     },
@@ -262,7 +262,7 @@ app.use(function (req, res, next) {
       //next(abortReason);
     }
   });
-  router.run(routes, req.path, function (Handler) {
+  Router.run(function (Handler) {
     var html = React.renderToString(React.createElement(Handler));
     var page = swig.renderFile('views/index.html', { html: html });
     res.send(page);
