@@ -262,7 +262,7 @@ app.use(function (req, res, next) {
       //next(abortReason);
     }
   });
-  Router.run(function (Handler) {
+  router.run(function (Handler) {
     var html = React.renderToString(React.createElement(Handler));
     var page = swig.renderFile('views/index.html', { html: html });
     res.send(page);
